@@ -5,6 +5,18 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Fashion palette CSS variables */
+  --color-primary: #8b5cf6;
+  --color-fashion-black: #000000;
+  --color-fashion-charcoal: #36454F;
+  --color-fashion-navy: #000080;
+  --color-fashion-burgundy: #800020;
+  --color-fashion-beige: #F5F5DC;
+  --color-fashion-cream: #FFFDD0;
+  --color-fashion-blush: #DE5D83;
+  --color-fashion-gold: #D4AF37;
+  --color-fashion-silver: #C0C0C0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,11 +29,43 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  h1 {
+    @apply text-3xl font-bold md:text-4xl;
+  }
+  h2 {
+    @apply text-2xl font-bold md:text-3xl;
+  }
+  h3 {
+    @apply text-xl font-bold md:text-2xl;
+  }
+  h4 {
+    @apply text-lg font-bold md:text-xl;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition-colors;
+  }
+  .btn-secondary {
+    @apply bg-neutral-200 text-neutral-800 px-4 py-2 rounded-md hover:bg-neutral-300 transition-colors;
+  }
+  .btn-fashion {
+    @apply bg-fashion-burgundy text-white px-4 py-2 rounded-md hover:opacity-90 transition-opacity;
+  }
+  .card {
+    @apply bg-white rounded-lg shadow-soft p-6;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-500 to-fashion-blush bg-clip-text text-transparent;
   }
 }
