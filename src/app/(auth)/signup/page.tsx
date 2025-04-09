@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function LoginPage() {
+export default function SignUpPage() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-fashion-cream to-white">
       {/* Header */}
@@ -12,20 +12,47 @@ export default function LoginPage() {
         </div>
       </header>
 
-      {/* Login Card */}
+      {/* Signup Card */}
       <div className="flex-grow flex items-center justify-center p-6">
         <div className="card w-full max-w-md border border-fashion-gold/10">
           <div className="text-center mb-8">
-            <h2 className="font-serif text-2xl font-bold text-fashion-navy mb-2">Welcome Back</h2>
+            <h2 className="font-serif text-2xl font-bold text-fashion-navy mb-2">Create Your Account</h2>
             <div className="h-0.5 w-12 bg-fashion-gold mx-auto"></div>
           </div>
           
           <p className="text-center text-neutral-600 mb-8 elegant-spacing">
-            Sign in to your account to access personalized fashion recommendations.
+            Join FashionAIKit to discover your perfect style with AI-powered recommendations.
           </p>
           
-          {/* Login Form */}
+          {/* Signup Form */}
           <form className="space-y-6">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="firstName" className="block text-sm font-medium text-fashion-charcoal mb-2">
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent"
+                  placeholder="Jane"
+                />
+              </div>
+              <div>
+                <label htmlFor="lastName" className="block text-sm font-medium text-fashion-charcoal mb-2">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent"
+                  placeholder="Doe"
+                />
+              </div>
+            </div>
+            
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-fashion-charcoal mb-2">
                 Email Address
@@ -40,17 +67,9 @@ export default function LoginPage() {
             </div>
             
             <div>
-              <div className="flex items-center justify-between mb-2">
-                <label htmlFor="password" className="block text-sm font-medium text-fashion-charcoal">
-                  Password
-                </label>
-                <Link 
-                  href="/forgot-password" 
-                  className="text-xs font-medium text-primary-600 hover:text-primary-800"
-                >
-                  Forgot password?
-                </Link>
-              </div>
+              <label htmlFor="password" className="block text-sm font-medium text-fashion-charcoal mb-2">
+                Password
+              </label>
               <input
                 type="password"
                 id="password"
@@ -58,17 +77,20 @@ export default function LoginPage() {
                 className="w-full px-4 py-3 border border-neutral-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent"
                 placeholder="••••••••"
               />
+              <p className="mt-1 text-xs text-neutral-500">
+                Password must be at least 8 characters long with a number and special character.
+              </p>
             </div>
             
-            <div className="flex items-center">
+            <div className="flex items-start">
               <input
-                id="remember-me"
-                name="remember-me"
+                id="terms"
+                name="terms"
                 type="checkbox"
-                className="h-4 w-4 text-primary-600 focus:ring-primary-400 border-neutral-300 rounded"
+                className="h-4 w-4 mt-1 text-primary-600 focus:ring-primary-400 border-neutral-300 rounded"
               />
-              <label htmlFor="remember-me" className="ml-2 block text-sm text-neutral-600">
-                Remember me
+              <label htmlFor="terms" className="ml-2 block text-sm text-neutral-600">
+                I agree to the <Link href="/terms" className="text-primary-600 hover:text-primary-800">Terms of Service</Link> and <Link href="/privacy" className="text-primary-600 hover:text-primary-800">Privacy Policy</Link>
               </label>
             </div>
             
@@ -76,18 +98,18 @@ export default function LoginPage() {
               type="submit"
               className="w-full btn-fashion"
             >
-              Sign In
+              Create Account
             </button>
           </form>
           
           <div className="text-center mt-8 pt-6 border-t border-neutral-100">
             <p className="text-sm text-neutral-600">
-              Don't have an account?{' '}
+              Already have an account?{' '}
               <Link 
-                href="/signup" 
+                href="/login" 
                 className="font-medium text-primary-600 hover:text-primary-800"
               >
-                Sign up
+                Sign in
               </Link>
             </p>
           </div>
