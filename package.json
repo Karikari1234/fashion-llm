@@ -10,8 +10,9 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@ai-sdk/google": "^1.2.10",
     "@google/generative-ai": "^0.2.1",
-    "ai": "^2.2.36",
+    "ai": "^2.2.37",
     "bcrypt": "^5.1.1",
     "clsx": "^2.1.0",
     "mongodb": "^6.3.0",
