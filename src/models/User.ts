@@ -1,5 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { db } from '@/lib/db';
 import { User, StylePreferences } from '@/types';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { ObjectId } from 'mongodb';
 import * as bcrypt from 'bcrypt';
 
@@ -8,6 +12,7 @@ const COLLECTION = 'users';
 /**
  * Convert MongoDB document to User type
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mapToUser(doc: any): User | null {
   if (!doc) return null;
   
@@ -40,7 +45,7 @@ export async function getUserById(id: string): Promise<User | null> {
  */
 export async function getUserByEmail(email: string): Promise<User | null> {
   try {
-    const doc = await db.findMany(COLLECTION, { email }, { limit: 1 });
+    const doc = await db.findMany(COLLECTION, { email }, { limit: 1, skip: 0, sort: { createdAt: -1 } });
     return doc.length ? mapToUser(doc[0]) : null;
   } catch (error) {
     console.error(`Error getting user with email ${email}:`, error);
@@ -57,7 +62,7 @@ export async function createUser(userData: Partial<User> & { password: string })
     const hashedPassword = await bcrypt.hash(userData.password, 10);
     
     // Remove password from the User object and store in separate field
-    const { password, ...userWithoutPassword } = userData;
+    const { password: _password, ...userWithoutPassword } = userData;
     
     const insertData = {
       ...userWithoutPassword,

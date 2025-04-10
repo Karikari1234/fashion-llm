@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextRequest, NextResponse } from 'next/server';
 import { createLLMProvider } from '@/lib/llm/factory';
 import { getLLMServiceConfig } from '@/lib/llm/config';

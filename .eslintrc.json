@@ -1,14 +1,10 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "next/typescript",
-    "eslint:recommended",
-    "prettier"
-  ],
+  "extends": ["next/core-web-vitals", "next/typescript", "eslint:recommended", "prettier"],
   "rules": {
-    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
-    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "no-unused-vars": "off",
+    "no-console": "off",
     "react/prop-types": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }

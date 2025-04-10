@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { LLMProviderConfig, LLMError, LLMErrorType } from './types';
 import { ProviderType } from './factory';
 

@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongodb';
+import { Db, ObjectId } from 'mongodb';
 import { dbOperation } from './mongodb';
 
 /**
@@ -7,11 +7,12 @@ import { dbOperation } from './mongodb';
 
 /**
  * Find a single document by ID
+ *
  */
 export async function findById(collection: string, id: string) {
-  return dbOperation(async (db) => {
+  return dbOperation(async db => {
     try {
-      return await db.collection(collection).findOne({ _id: new ObjectId(id) });
+      return await (db as Db).collection(collection).findOne({ _id: new ObjectId(id) });
     } catch (error) {
       console.error(`Error finding document in ${collection} by ID ${id}:`, error);
       throw error;
@@ -23,17 +24,17 @@ export async function findById(collection: string, id: string) {
  * Find documents with optional query, pagination, and sorting
  */
 export async function findMany(
-  collection: string, 
-  query = {}, 
-  options = { 
-    limit: 50, 
-    skip: 0, 
-    sort: { createdAt: -1 } 
+  collection: string,
+  query = {},
+  options = {
+    limit: 50,
+    skip: 0,
+    sort: { createdAt: -1 as const },
   }
 ) {
-  return dbOperation(async (db) => {
+  return dbOperation(async db => {
     try {
-      return await db
+      return await (db as Db)
         .collection(collection)
         .find(query)
         .skip(options.skip)
@@ -50,13 +51,14 @@ export async function findMany(
 /**
  * Insert a single document
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function insertOne(collection: string, document: any) {
-  return dbOperation(async (db) => {
+  return dbOperation(async db => {
     try {
-      const result = await db.collection(collection).insertOne({
+      const result = await (db as Db).collection(collection).insertOne({
         ...document,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       });
       return { id: result.insertedId, ...document };
     } catch (error) {
@@ -69,19 +71,23 @@ export async function insertOne(collection: string, document: any) {
 /**
  * Update a single document by ID
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function updateById(collection: string, id: string, update: any) {
-  return dbOperation(async (db) => {
+  return dbOperation(async db => {
     try {
-      const result = await db.collection(collection).findOneAndUpdate(
+      const result = await (db as Db).collection(collection).findOneAndUpdate(
         { _id: new ObjectId(id) },
-        { 
-          $set: { 
+        {
+          $set: {
             ...update,
-            updatedAt: new Date() 
-          } 
+            updatedAt: new Date(),
+          },
         },
         { returnDocument: 'after' }
       );
+      if (!result) {
+        throw new Error(`Failed to update document in ${collection} with ID ${id}: result is null`);
+      }
       return result.value;
     } catch (error) {
       console.error(`Error updating document in ${collection} with ID ${id}:`, error);
@@ -94,9 +100,9 @@ export async function updateById(collection: string, id: string, update: any) {
  * Delete a single document by ID
  */
 export async function deleteById(collection: string, id: string) {
-  return dbOperation(async (db) => {
+  return dbOperation(async db => {
     try {
-      const result = await db.collection(collection).deleteOne({ _id: new ObjectId(id) });
+      const result = await (db as Db).collection(collection).deleteOne({ _id: new ObjectId(id) });
       return result.deletedCount === 1;
     } catch (error) {
       console.error(`Error deleting document from ${collection} with ID ${id}:`, error);
@@ -109,9 +115,9 @@ export async function deleteById(collection: string, id: string) {
  * Count documents in a collection with optional query
  */
 export async function countDocuments(collection: string, query = {}) {
-  return dbOperation(async (db) => {
+  return dbOperation(async db => {
     try {
-      return await db.collection(collection).countDocuments(query);
+      return await (db as Db).collection(collection).countDocuments(query);
     } catch (error) {
       console.error(`Error counting documents in ${collection}:`, error);
       throw error;

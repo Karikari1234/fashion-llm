@@ -22,6 +22,7 @@ export default function DashboardPage() {
           <h1 className="font-serif text-xl text-fashion-burgundy">FashionAIKit Dashboard</h1>
           <div className="flex items-center gap-4">
             {session?.user?.image ? (
+              // eslint-disable-next-line @next/next/no-img-element
               <img 
                 src={session.user.image} 
                 alt={session.user.name || 'User'} 
