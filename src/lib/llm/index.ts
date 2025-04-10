@@ -14,5 +14,9 @@ export * from './factory';
 // Export configuration utilities
 export * from './config';
 
-// Import all providers to ensure they register themselves
-import './providers';
+// Ensure all providers are registered
+import { ensureProvidersRegistered } from './register-providers';
+ensureProvidersRegistered();
+
+// Export the registration helper
+export { ensureProvidersRegistered } from './register-providers';
