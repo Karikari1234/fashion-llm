@@ -6,7 +6,7 @@ Below is a comprehensive task list for implementing our FashionAIKit MVP. This A
 
 ## 1. Project Foundation
 
-### 1.1 Project Setup and Configuration
+### 1.1 Project Setup and Configuration [DONE]
 
 - Initialize a Next.js project with App Router architecture and TypeScript
   ```bash
@@ -29,7 +29,7 @@ Below is a comprehensive task list for implementing our FashionAIKit MVP. This A
 - Create environment configuration files (.env.local, .env.example)
 - Implement proper gitignore rules for sensitive information
 
-### 1.2 Database Configuration
+### 1.2 Database Configuration [DONE]
 
 - Set up MongoDB connection with proper connection pooling for serverless environments
 - Configure database error handling and reconnection logic
@@ -38,22 +38,15 @@ Below is a comprehensive task list for implementing our FashionAIKit MVP. This A
 
 ## 2. Authentication System
 
-### 2.1 User Data Models
+### 2.1 Google Authentication
 
-- Design and implement User schema (name, email, password, style preferences)
-- Create schema for style profiles and preferences
-- Implement secure password hashing using bcrypt
-- Add validation for user data with meaningful error messages
-
-### 2.2 Authentication Implementation
-
-- Set up Auth.js (formerly NextAuth.js) with MongoDB adapter
-- Implement JWT strategy with secure HTTP-only cookies
-- Create custom registration endpoint with email verification
-- Build login flow with proper error handling
-- Implement session persistence and refresh mechanisms
-- Create authentication middleware for protected routes
-- Add account management functionality (password reset, profile updates)
+- Authenticate via google only.
+- Signup by google and login by google
+- Set up authentication and authorization setup modularly.
+- Only way to log in and signup and sign out is with Google Authentication
+- Implement Signup login logout along with authorization and set a example protected route just for example and testing purpose
+- Setup tests for testing if it is alright or not
+- Tell the senior developer on instructions on how to get google authentication into the application.
 
 ## 3. Fashion Data Management
 

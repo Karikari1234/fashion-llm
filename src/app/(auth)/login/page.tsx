@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import GoogleSignInButton from '@/components/auth/GoogleSignInButton';
 
 export default function LoginPage() {
   return (
@@ -24,71 +25,14 @@ export default function LoginPage() {
             Sign in to your account to access personalized fashion recommendations.
           </p>
           
-          {/* Login Form */}
-          <form className="space-y-6">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-fashion-charcoal mb-2">
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                className="w-full px-4 py-3 border border-neutral-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent"
-                placeholder="your@email.com"
-              />
-            </div>
-            
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <label htmlFor="password" className="block text-sm font-medium text-fashion-charcoal">
-                  Password
-                </label>
-                <Link 
-                  href="/forgot-password" 
-                  className="text-xs font-medium text-primary-600 hover:text-primary-800"
-                >
-                  Forgot password?
-                </Link>
-              </div>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                className="w-full px-4 py-3 border border-neutral-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent"
-                placeholder="••••••••"
-              />
-            </div>
-            
-            <div className="flex items-center">
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                className="h-4 w-4 text-primary-600 focus:ring-primary-400 border-neutral-300 rounded"
-              />
-              <label htmlFor="remember-me" className="ml-2 block text-sm text-neutral-600">
-                Remember me
-              </label>
-            </div>
-            
-            <button
-              type="submit"
-              className="w-full btn-fashion"
-            >
-              Sign In
-            </button>
-          </form>
+          {/* Google Sign In Button */}
+          <div className="mb-6">
+            <GoogleSignInButton />
+          </div>
           
           <div className="text-center mt-8 pt-6 border-t border-neutral-100">
             <p className="text-sm text-neutral-600">
-              Don't have an account?{' '}
-              <Link 
-                href="/signup" 
-                className="font-medium text-primary-600 hover:text-primary-800"
-              >
-                Sign up
-              </Link>
+              Don&apos;t have an account? Sign in with Google to create one automatically.
             </p>
           </div>
         </div>
