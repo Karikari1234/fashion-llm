@@ -38,7 +38,7 @@ Below is a comprehensive task list for implementing our FashionAIKit MVP. This A
 
 ## 2. Authentication System
 
-### 2.1 Google Authentication
+### 2.1 Google Authentication [DONE]
 
 - Authenticate via google only.
 - Signup by google and login by google
